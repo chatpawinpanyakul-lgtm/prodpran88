@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liverpool FC - สโมสรฟุตบอลลิเวอร์พูล</title>
+    <!-- นำเข้าฟอนต์ภาษาไทย Sarabun และ Kanit จาก Google Fonts เพื่อการอ่านที่สบายตา -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700&family=Sarabun:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           1. การตั้งค่าตัวแปรสี (Liverpool FC Theme)
+           สามารถแก้ไขรหัสสีตรงนี้เพื่อเปลี่ยนโทนสีทั้งเว็บได้ทันที
+        ========================================= */
+        :root {
+            --lfc-red: #C8102E;          /* สีแดงหลักของลิเวอร์พูล */
+            --lfc-dark-red: #9E0B22;     /* สีแดงเข้มสำหรับ Hover หรือเงา */
+            --lfc-gold: #F6EB61;         /* สีเหลืองทองสำหรับจุดเน้น */
+            --lfc-teal: #00B2A9;         /* สีเขียวนกเป็ดน้ำ (สีประจำเมืองลิเวอร์พูล) */
+            --bg-light: #F8F9FA;         /* สีพื้นหลังสว่าง */
+            --text-dark: #1E2022;        /* สีตัวอักษรหลัก */
+            --text-muted: #52616B;       /* สีตัวอักษรรอง */
+            --white: #FFFFFF;
+        }
+
+        /* รีเซ็ตค่าเริ่มต้นและตั้งค่า Smooth Scroll */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .nav-brand {
+            font-family: 'Kanit', sans-serif;
+        }
+
+        /* =========================================
+           2. แถบเมนูนำทาง (Navigation Bar)
+        ========================================= */
+        header {
+            background-color: var(--lfc-red);
+            color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-brand span {
+            color: var(--lfc-gold);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 400;
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--lfc-dark-red);
+            color: var(--lfc-gold);
+        }
+
+        /* =========================================
+           3. ส่วนแบนเนอร์ต้อนรับ (Hero Section)
+        ========================================= */
+        .hero {
+            background: linear-gradient(135deg, var(--lfc-dark-red) 0%, var(--lfc-red) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 2rem;
+            border-bottom: 5px solid var(--lfc-gold);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            color: #f1f1f1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--lfc-gold);
+            color: var(--lfc-dark-red);
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            padding: 0.75rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1.2rem;
+            border: 2px solid var(--lfc-red);
+            color: var(--lfc-red);
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--lfc-red);
+            color: var(--white);
+        }
+
+        /* =========================================
+           4. โครงสร้างเนื้อหาหลัก (Container & Sections)
+        ========================================= */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--lfc-red);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--lfc-teal);
+            display: inline-block;
+        }
+
+        /* การ์ดแสดงเนื้อหา */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--lfc-red);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--lfc-teal);
+            color: var(--white);
+            font-size: 0.85rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        /* ตารางผลงาน (Honours Table) */
+        .honours-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .honours-table th, .honours-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .honours-table th {
+            background-color: var(--lfc-red);
+            color: var(--white);
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .honours-table tr:hover {
+            background-color: #fff5f6;
+        }
+
+        .trophy-count {
+            font-weight: 700;
+            color: var(--lfc-red);
+            font-size: 1.1rem;
+        }
+
+        /* =========================================
+           5. ส่วนติดต่อผู้พัฒนาและ Footer
+        ========================================= */
+        .developer-section {
+            background-color: #1E2022;
+            color: var(--white);
+            padding: 3rem 2rem;
+            margin-top: 2rem;
+            border-top: 5px solid var(--lfc-teal);
+        }
+
+        .dev-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #2A2D30;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 6px solid var(--lfc-gold);
+        }
+
+        .dev-box h2 {
+            color: var(--lfc-gold);
+            margin-bottom: 1rem;
+        }
+
+        .dev-info p {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .dev-info span {
+            color: var(--lfc-teal);
+            font-weight: 700;
+        }
+
+        footer {
+            background-color: #121314;
+            color: #888;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* รองรับหน้าจอมือถือ (Responsive) */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- แถบเมนูนำทาง -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="nav-brand">LIVERPOOL <span>FC</span></a>
+            <ul class="nav-links">
+                <li><a href="#history">ประวัติการก่อตั้ง</a></li>
+                <li><a href="#players">รายชื่อผู้เล่น</a></li>
+                <li><a href="#honours">ผลงานและเกียรติประวัติ</a></li>
+                <li><a href="#developer">ติดต่อผู้พัฒนา</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ส่วนต้อนรับหลัก -->
+    <section class="hero">
+        <h1>YOU'LL NEVER WALK ALONE</h1>
+        <p>ยินดีต้อนรับสู่เว็บไซต์รวบรวมข้อมูล ประวัติศาสตร์ รายชื่อนักเตะ และความสำเร็จอันยิ่งใหญ่ของสโมสรฟุตบอลลิเวอร์พูล (หงส์แดง)</p>
+        <a href="#history" class="btn">เริ่มต้นสำรวจสโมสร</a>
+    </section>
+
+    <main class="container">
+
+        <!-- 1. ส่วนประวัติการก่อตั้งทีม -->
+        <section id="history">
+            <h2 class="section-title">ประวัติการก่อตั้งทีม</h2>
+            <div class="card">
+                <span class="badge">ก่อตั้งเมื่อ: 3 มิถุนายน ค.ศ. 1892</span>
+                <h3>จุดเริ่มต้นที่แอนฟีลด์ (Anfield)</h3>
+                <p>
+                    สโมสรฟุตบอลลิเวอร์พูลก่อตั้งขึ้นในปี ค.ศ. 1892 โดย <strong>จอห์น โฮลดิง (John Houlding)</strong> เจ้าของสนามแอนฟีลด์ หลังจากเกิดความขัดแย้งเรื่องค่าเช่าสนามกับสโมสรเอฟเวอร์ตันที่ย้ายออกไปเล่นที่กูดิสันพาร์ก โฮลดิงจึงตัดสินใจสร้างทีมฟุตบอลขึ้นมาใหม่ในชื่อ <em>"Liverpool Football Club"</em> 
+                </p>
+                <p style="margin-top: 1rem;">
+                    ลิเวอร์พูลก้าวขึ้นมาเป็นมหาอำนาจลูกหนังของอังกฤษและยุโรปอย่างแท้จริงในยุคของ <strong>บิลล์ แชงคลีย์ (Bill Shankly)</strong> และ <strong>บ็อบ เพสลีย์ (Bob Paisley)</strong> ที่วางรากฐานวัฒนธรรม "Boot Room" จนสร้างความสำเร็จมากมายต่อเนื่องมาจนถึงยุคปัจจุบัน
+                </p>
+                <!-- ลิงก์คลิกเพื่ออ่านเพิ่มเติม -->
+                <a href="https://www.liverpoolfc.com/history" target="_blank" rel="noopener noreferrer" class="btn-outline">อ่านประวัติศาสตร์ฉบับเต็ม (เว็บไซต์ทางการ) &rarr;</a>
+            </div>
+        </section>
+
+        <hr style="margin: 3rem 0; border: 0; border-top: 1px solid #ddd;">
+
+        <!-- 2. ส่วนรายชื่อผู้เล่น (สามารถเพิ่ม/ลบ การ์ดนักเตะตรงนี้ได้) -->
+        <section id="players">
+            <h2 class="section-title">รายชื่อผู้เล่นหลัก (ชุดปัจจุบัน)</h2>
+            <p style="color: var(--text-muted);">คลิกที่ปุ่มด้านล่างของการ์ดเพื่อดูสถิติและข้อมูลเพิ่มเติมของนักเตะแต่ละคน</p>
+            
+            <div class="card-grid">
+                <!-- นักเตะคนที่ 1 -->
+                <div class="card">
+                    <span class="badge">ผู้รักษาประตู | เบอร์ 1</span>
+                    <h3>อลีสซง เบ็คเกอร์ (Alisson Becker)</h3>
+                    <p>ผู้รักษาประตูมือหนึ่งทีมชาติบราซิล ผู้ขึ้นชื่อเรื่องการเซฟลูกสำคัญและการเปิดบอลที่แม่นยำ</p>
+                    <a href="https://www.liverpoolfc.com/team/mens/player/alisson-becker" target="_blank" rel="noopener noreferrer" class="btn-outline">อ่านเพิ่มเติม &rarr;</a>
+                </div>
+
+                <!-- นักเตะคนที่ 2 -->
+                <div class="card">
+                    <span class="badge">กองหลัง | เบอร์ 4 (กัปตันทีม)</span>
+                    <h3>เฟอร์จิล ฟาน ไดค์ (Virgil van Dijk)</h3>
+                    <p>กัปตันทีมและปราการหลังจอมแกร่งทีมชาติเนเธอร์แลนด์ หัวใจสำคัญในเกมรับของหงส์แดง</p>
+                    <a href="https://www.liverpoolfc.com/team/mens/player/virgil-van-dijk" target="_blank" rel="noopener noreferrer" class="btn-outline">อ่านเพิ่มเติม &rarr;</a>
+                </div>
+
+                <!-- นักเตะคนที่ 3 -->
+                <div class="card">
+                    <span class="badge">กองกลาง | เบอร์ 8</span>
+                    <h3>โดมินิค โซบอสไล (Dominik Szoboszlai)</h3>
+                    <p>มิดฟิลด์ตัวรุกกัปตันทีมชาติฮังการี โดดเด่นด้านพละกำลังและการยิงไกลที่ทรงพลัง</p>
+                    <a href="https://www.liverpoolfc.com/team/mens/player/dominik-szoboszlai" target="_blank" rel="noopener noreferrer" class="btn-outline">อ่านเพิ่มเติม &rarr;</a>
+                </div>
+
+                <!-- นักเตะคนที่ 4 -->
+                <div class="card">
+                    <span class="badge">กองหน้า | เบอร์ 11</span>
+                    <h3>โมฮาเหม็ด ซาลาห์ (Mohamed Salah)</h3>
+                    <p>"ราชาแห่งอียิปต์" ปีกขวาจอมถล่มประตู เจ้าของสถิติยิงประตูมากมายให้กับสโมสร</p>
+                    <a href="https://www.liverpoolfc.com/team/mens/player/mohamed-salah" target="_blank" rel="noopener noreferrer" class="btn-outline">อ่านเพิ่มเติม &rarr;</a>
+                </div>
+
+                <!-- หมายเหตุ: หากต้องการเพิ่มนักเตะ ให้คัดลอกบล็อก <div class="card">...</div> มาวางต่อตรงนี้ -->
+            </div>
+        </section>
+
+        <hr style="margin: 3rem 0; border: 0; border-top: 1px solid #ddd;">
+
+        <!-- 3. ส่วนผลงานตั้งแต่อดีตถึงปัจจุบัน -->
+        <section id="honours">
+            <h2 class="section-title">ผลงานและเกียรติประวัติ (อดีต - ปัจจุบัน)</h2>
+            <p style="color: var(--text-muted);">ลิเวอร์พูลเป็นหนึ่งในสโมสรที่ประสบความสำเร็จมากที่สุดในประเทศอังกฤษและทวีปยุโรป</p>
+
+            <table class="honours-table">
+                <thead>
+                    <tr>
+                        <th>รายการแข่งขัน</th>
+                        <th>จำนวนแชมป์</th>
+                        <th>ปีที่คว้าแชมป์ล่าสุด</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ลีกสูงสุดอังกฤษ (ดิวิชั่น 1 เดิม / พรีเมียร์ลีก)</strong></td>
+                        <td class="trophy-count">19 สมัย</td>
+                        <td>2019–20 (และลุ้นสมัยที่ 20 ในยุคปัจจุบัน)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ยูฟ่า แชมเปียนส์ลีก (ยูโรเปียนคัพ)</strong></td>
+                        <td class="trophy-count">6 สมัย</td>
+                        <td>2018–19</td>
+                    </tr>
+                    <tr>
+                        <td><strong>เอฟเอ คัพ (FA Cup)</strong></td>
+                        <td class="trophy-count">8 สมัย</td>
+                        <td>2021–22</td>
+                    </tr>
+                    <tr>
+                        <td><strong>อีเอฟแอล คัพ (ลีกคัพ / คาราบาวคัพ)</strong></td>
+                        <td class="trophy-count">10 สมัย (สูงสุด)</td>
+                        <td>2023–24</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ยูฟ่า คัพ / ยูโรปา ลีก</strong></td>
+                        <td class="trophy-count">3 สมัย</td>
+                        <td>2000–01</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ฟุตบอลชิงแชมป์สโมสรโลก (FIFA Club World Cup)</strong></td>
+                        <td class="trophy-count">1 สมัย</td>
+                        <td>2019</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="margin-top: 1.5rem;">
+                <a href="https://www.liverpoolfc.com/history/honours" target="_blank" rel="noopener noreferrer" class="btn-outline">ดูทำเนียบแชมป์ทั้งหมดอย่างละเอียด &rarr;</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 4. ส่วนติดต่อกับผู้พัฒนาเว็บ -->
+    <section id="developer" class="developer-section">
+        <div class="dev-box">
+            <h2>ข้อมูลผู้พัฒนาเว็บไซต์ (Developer Contact)</h2>
+            <div class="dev-info">
+                <!-- สามารถแก้ไขข้อมูลผู้พัฒนาได้ตรงนี้ -->
+                <p><span>ชื่อผู้พัฒนา:</span> ด.ช.ฉัตรปวินท์ ปัญญากูล</p>
+                <p><span>Line ID:</span> ไม่ทราบ (สามารถแก้ไขใส่ ID ภายหลังได้)</p>
+                <p><span>เครื่องมือที่ใช้พัฒนา:</span> HTML5, CSS3 (Responsive UX/UI Design)</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 เว็บไซต์แฟนคลับสโมสรฟุตบอลลิเวอร์พูล | พัฒนาโดย ด.ช.ฉัตรปวินท์ ปัญญากูล</p>
+    </footer>
+
+</body>
+</html>
